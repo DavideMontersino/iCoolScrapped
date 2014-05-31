@@ -13,7 +13,7 @@ Main files are:
 The vast majority of the other files are from nodejs's npm and bower dependencies and foundation, and are used just to compile the scss files.
 
 ##Usage
-just fire a webserver and reach index.html. Everything should work just fine accessing the websie from the filesystem too.
+just fire a webserver and reach index.html. Everything should work just fine accessing the website from the filesystem too.
 ## Notes
 
 I am using sass + foundation; this means css files are compiled into one file (app.css) from multiple scss sources; you need to install the requirements in order to be able to compile new css.
