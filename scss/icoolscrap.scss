@@ -1,0 +1,119 @@
+@import "foundation/components/global";
+@import "foundation/components/accordion";
+@import "custom-mixins"; //custom helpers for gradient and css transform
+
+// Variables
+$icool-bg:#444;
+$resize-duration: .2s;
+$opacity-duration: $resize-duration*4;
+$prey-scale: 1.2;
+$border-default: rem-calc(2) dashed #111;
+
+
+// Common elements definition
+a.label.inverse{
+	color: #eee;
+	background-color: #111;
+	@include opacity(0.8);
+}
+
+
+.icoolhunt-logo{
+	border-bottom: $border-default;
+	
+	padding: rem-calc(20) 0;
+	margin-bottom: rem-calc(50);
+}
+
+ul#prey-container{
+	margin-bottom:150px; // otherwise the description will cover the last photo
+}
+
+.static{
+	position:static;
+}
+
+.icoolscrap{
+	background-color: $icool-bg;
+	
+	ul[class*="block-grid"]{
+		& > li{
+			padding: 0;
+		}
+	}
+
+	#prey-container > li{
+		
+		position:relative;
+		
+		filter: alpha(opacity=40);
+
+
+		@include transition(opacity, $opacity-duration, ease-in-out);
+		&.active{
+			
+			div.prey-container{
+
+				position: relative;
+				z-index: 100;
+				border:0px;
+				background-color: darken($icool-bg,10%);
+				@include scale($prey-scale);
+				img{
+					opacity: 1;
+				} 
+				.author{
+					display: block;
+				}
+			}
+		}
+
+		div.prey-container{
+			z-index: 0;
+		    @include transition(transform, $resize-duration, ease-in-out);
+			text-align:center;
+			position:relative;
+			border: $border-default;
+			padding:rem-calc(5);
+			margin:rem-calc(5);
+			background-color: $icool-bg;
+			img{
+				opacity: 0.4;
+			}
+			.author{
+				display: none;
+				text-align: right;
+				padding:rem-calc(10);
+				position: absolute;
+				bottom:0;
+				width: 100%;
+				
+			}
+		}
+	}
+
+	div.elem-info{
+		position:fixed;
+		bottom:0;
+		width: 100%;
+		min-height: rem-calc(130);
+
+		//one level more than the preys
+		z-index:101; 
+
+		@include linear-gradient(rgba(21,21,21,0) 0%, rgba(21,21,21,0.9) 17%);
+
+		padding:rem-calc(40) rem-calc(40) rem-calc(10);
+		
+		//Foundation's inline list do not have a bottom margin; we need one since we can have multiple lines
+		.inline-list li{
+			margin-bottom: rem-calc(10);
+		}
+
+		//Good measure for large descriptions
+		blockquote{
+			max-height:200px;
+			overflow: auto;
+		}
+	}
+}

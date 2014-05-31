@@ -1,0 +1,72 @@
+// @mixin     opacity
+// @param     $value {Number} the percentage of alpha channel, from 0 to 1
+// @usage:
+// =opacity(.8)
+// see https://coderwall.com/p/mca5xw
+
+@mixin opacity($value){
+  $IEValue: $value*100;
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+  filter: alpha(opacity=$IEValue);
+}
+
+// @mixin     transition
+// @param     $transition-property {String} 
+// @param     $transition-time {Number}  the time in seconds or milliseconds
+// @param     $method {String} the easing function to use
+// @usage:
+// transition(opacity, $opacity-duration, ease-in-out);
+
+@mixin transition($transition-property, $transition-time, $method) {
+
+	// some properties still have vendor prefixes.. we only check transform actually!! :)
+	@if $transition-property == transform {
+		$webkit-transition-property: -webkit- + $transition-property;
+		$moz-transition-property: -moz- + $transition-property;
+		$ms-transition-property: -ms- + $transition-property;
+		$o-transition-property: -o- + $transition-property;
+	} @else {
+	
+		$webkit-transition-property: $transition-property;
+		$moz-transition-property: $transition-property;
+		$ms-transition-property:$transition-property;
+		$o-transition-property: $transition-property;
+	}
+
+    -webkit-transition: $webkit-transition-property $transition-time $method;
+    -moz-transition: $moz-transition-property $transition-time $method;
+    -ms-transition: $ms-transition-property $transition-time $method;
+    -o-transition: $o-transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+// @mixin     scale
+// @param     $scale-factor scale factor
+// @usage:
+// scale(1.4);
+
+@mixin scale($scale-factor){
+	-webkit-transform: scale($scale-factor);  	/* Saf3.1+, Chrome 	*/
+	-moz-transform: scale($scale-factor);  		/* FF3.5+ 			*/
+	-ms-transform: scale($scale-factor);  		/* IE9 				*/
+	-o-transform: scale($scale-factor);  		/* Opera 10.5+ 		*/
+	transform: scale($scale-factor);
+}
+
+// @mixin     linear-gradient
+// @param     $fromColor {String}
+// @param     $toColor {String}
+// @usage:
+// linear-gradient(rgba(21,21,21,0) 0%, rgba(21,21,21,0.9) 17%);
+
+@mixin linear-gradient($fromColor, $toColor) {
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+  background-image:      -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+  background-image:         linear-gradient(top, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}

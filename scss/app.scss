@@ -1,11 +1,11 @@
 @import "settings";
-@import "foundation";
+@import "icoolscrap";
 
-// Or selectively include components
-// @import
+// We selectively include components
+@import
 //   "foundation/components/accordion",
 //   "foundation/components/alert-boxes",
-//   "foundation/components/block-grid",
+   "foundation/components/block-grid",
 //   "foundation/components/breadcrumbs",
 //   "foundation/components/button-groups",
 //   "foundation/components/buttons",
@@ -14,11 +14,11 @@
 //   "foundation/components/dropdown-buttons",
 //   "foundation/components/flex-video",
 //   "foundation/components/forms",
-//   "foundation/components/grid",
-//   "foundation/components/inline-lists",
+   "foundation/components/grid",
+   "foundation/components/inline-lists",
 //   "foundation/components/joyride",
 //   "foundation/components/keystrokes",
-//   "foundation/components/labels",
+   "foundation/components/labels",
 //   "foundation/components/magellan",
 //   "foundation/components/orbit",
 //   "foundation/components/pagination",
@@ -35,6 +35,6 @@
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
 //   "foundation/components/top-bar",
-//   "foundation/components/type",
+   "foundation/components/type";
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
